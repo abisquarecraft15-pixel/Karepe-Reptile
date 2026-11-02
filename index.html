@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="theme-color" content="#f97316">
+  <meta name="description" content="Demo toko hewan Rimba Pet">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <title>Rimba Pet — Demo Toko Hewan</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-icon">🐾</span><span>Rimba <b>Pet</b><small>Teman hewan kesayangan</small></span></div>
+  <button class="icon-btn" id="cartTop" aria-label="Keranjang">🛒 <i id="cartCount">0</i></button>
+</header>
+<main>
+  <section id="homePage" class="page active">
+    <div class="hero">
+      <div><span class="eyebrow">TOKO HEWAN PILIHAN</span><h1>Temukan teman<br>berbulu favoritmu.</h1><p>Belanja hewan dan kebutuhan perawatannya.</p><button class="primary" onclick="showPage('catalogPage')">Mulai belanja</button></div>
+      <div class="hero-art">🐶<span>🐱</span></div>
+    </div>
+    <div class="section-head"><h2>Kategori hewan</h2><button class="link" onclick="showPage('catalogPage')">Lihat semua</button></div>
+    <div class="categories" id="categoryList"></div>
+    <div class="section-head"><h2>Produk pilihan</h2><button class="link" onclick="showPage('catalogPage')">Semua produk</button></div>
+    <div class="product-grid" id="featuredProducts"></div>
+  </section>
+
+  <section id="catalogPage" class="page">
+    <div class="page-title"><h1>Katalog produk</h1><p>Pilih hewan atau perlengkapan.</p></div>
+    <input id="searchInput" class="search" placeholder="Cari kucing, ikan, makanan..." />
+    <div class="chips" id="filterChips"></div>
+    <div class="product-grid" id="catalogProducts"></div>
+  </section>
+
+  <section id="cartPage" class="page">
+    <div class="page-title"><h1>Keranjang</h1><p>Periksa pesanan sebelum checkout.</p></div>
+    <div id="cartItems"></div>
+    <div class="total-card"><div><span>Total belanja</span><strong id="cartTotal">Rp0</strong></div><button class="primary full" id="checkoutBtn">Lanjut checkout</button></div>
+  </section>
+
+  <section id="ordersPage" class="page">
+    <div class="page-title"><h1>Pesanan saya</h1><p>Riwayat transaksi demo.</p></div>
+    <div id="orderList"></div>
+  </section>
+
+  <section id="profilePage" class="page">
+    <div class="page-title"><h1>Akun saya</h1><p>Pengaturan pelanggan dan toko.</p></div>
+    <div class="profile-card"><div class="avatar">👤</div><div><b id="profileName">Pelanggan Demo</b><small id="profileEmail">demo@rimbapet.test</small></div></div>
+    <div class="settings-list">
+      <button onclick="editProfile()">✏️ Edit akun <span>›</span></button>
+      <button onclick="showPage('adminPage')">📊 Dashboard pemilik toko <span>›</span></button>
+      <button onclick="editStore()">🏪 Edit profil toko <span>›</span></button>
+      <button onclick="resetDemo()">↻ Reset data demo <span>›</span></button>
+    </div>
+    <p class="notice">Mode demo: data disimpan di perangkat ini (localStorage), belum tersinkron ke server.</p>
+  </section>
+
+  <section id="adminPage" class="page">
+    <div class="page-title"><h1>Dashboard toko</h1><p id="storeNameLabel">Rimba Pet · Ringkasan penjualan</p></div>
+    <div class="stats">
+      <div class="stat"><span>Total pemasukan</span><b id="revenue">Rp0</b><small>Pesanan selesai demo</small></div>
+      <div class="stat"><span>Total pesanan</span><b id="orderCount">0</b><small>Semua transaksi</small></div>
+      <div class="stat"><span>Produk aktif</span><b id="productCount">0</b><small>Di katalog</small></div>
+      <div class="stat"><span>Menunggu diproses</span><b id="pendingCount">0</b><small>Status pesanan</small></div>
+    </div>
+    <div class="section-head"><h2>Kelola produk</h2><button class="primary small" onclick="addProduct()">+ Tambah</button></div>
+    <div id="adminProducts" class="admin-products"></div>
+    <div class="section-head"><h2>Pesanan masuk</h2></div>
+    <div id="adminOrders"></div>
+    <button class="secondary full" onclick="editStore()">Edit profil toko</button>
+  </section>
+</main>
+<nav class="bottom-nav">
+  <button data-page="homePage" class="nav-item active">🏠<small>Beranda</small></button>
+  <button data-page="catalogPage" class="nav-item">🔎<small>Katalog</small></button>
+  <button data-page="cartPage" class="nav-item">🛒<small>Keranjang</small></button>
+  <button data-page="ordersPage" class="nav-item">📦<small>Pesanan</small></button>
+  <button data-page="profilePage" class="nav-item">👤<small>Akun</small></button>
+</nav>
+<div id="modal" class="modal hidden"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="./app.js"></script>
+</body>
+</html>
